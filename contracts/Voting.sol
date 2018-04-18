@@ -14,8 +14,6 @@ contract GenesisVisionVoting is Ownable {
 
     VotingState public votingState = VotingState.Created;
 
-    mapping (address => uint8) votes;
-
     function StartVoting() onlyOwner external {
         votingState = VotingState.VotingStarted;
         emit VotingStarted();
@@ -31,7 +29,6 @@ contract GenesisVisionVoting is Ownable {
         require(gvToken.balanceOf(msg.sender) > 0);
         require(proposalNumber > 0 && proposalNumber < 6);
 
-        votes[msg.sender] = proposalNumber;
         emit NewVote(msg.sender, proposalNumber);
     }
 }
