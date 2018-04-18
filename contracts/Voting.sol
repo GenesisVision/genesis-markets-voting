@@ -27,6 +27,7 @@ contract GenesisVisionVoting is Ownable {
     }
 
     function Vote(uint8 proposalNumber) external {
+        require(votingState == VotingState.VotingFinished)
         require(gvToken.balanceOf(msg.sender) > 0);
         require(proposalNumber > 0 && proposalNumber < 6);
 
